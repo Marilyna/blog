@@ -1,0 +1,88 @@
+/*.search-page #book-table thead tr th:first-child, .search-page #book-table thead tr th:last-child {*/
+    /*display: none;*/
+/*}*/
+
+/*.search-page #book-table tbody tr td:first-child, .search-page #book-table tbody tr td:last-child {*/
+    /*display: none;*/
+/*}*/
+
+/*#id-add-author {*/
+    /*font-size: 25px;*/
+    /*font-weight: bold;*/
+    /*cursor: pointer;*/
+    /*margin: 0 10px;*/
+/*}*/
+
+/*ul#authors {*/
+    /*display: inline-table;*/
+    /*list-style: none;*/
+    /*margin-bottom: 0;*/
+    /*padding-left: 0;*/
+/*}*/
+
+/*ul#id-books-list {*/
+    /*margin: 0;*/
+    /*padding: 5px;*/
+/*}*/
+
+div.content {
+    margin: 20px;
+}
+
+div.content h1 {
+    font-size: 30px;
+}
+
+div.content form {
+    margin: 10px 0
+}
+
+div.content form label {
+    margin-right: 5px;
+}
+
+div.content form input[type="text"] {
+    width: 300px;
+}
+
+div.content form .btn {
+    margin-left: 10px;
+    margin-right: 10px;
+    min-width: 120px;
+}
+
+div.content form .btn-xs {
+    min-width: 40px;
+    margin-top: -4px;
+    margin-bottom: -4px;
+}
+
+div.authentication form dt, div.content form dd {
+    display: inline;
+}
+
+div.authentication form dt label {
+    width: 140px;
+    text-align: right;
+}
+
+div.authentication form dd input {
+    width: 30% !important;
+}
+
+div.authentication form .btn {
+    margin-left: 150px;
+}
+
+.data-table thead th:nth-child(2) {
+    min-width: 300px;
+}
+.data-table thead th:nth-child(3) {
+    min-width: 300px;
+}
+
+.data-table tr td.editable input {
+    margin-bottom: -3px;
+    margin-top: -3px;
+    width: 100%;
+}

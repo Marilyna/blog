@@ -4,6 +4,8 @@ from django.contrib import admin
 from blog import views
 
 
+admin.autodiscover()
+
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', views.index, name='index'),
