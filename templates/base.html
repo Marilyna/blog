@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Catalog {% block title %}{% endblock %}</title>
+    <link rel=stylesheet type=text/css href="{{ STATIC_URL }}bootstrap.css">
+</head>
+<body>
+
+<nav class="navbar navbar-default" role="navigation">
+    <a class="navbar-brand" href="{% url 'index' %}">Blog</a>
+    <ul class="nav navbar-nav">
+        <li><a href="#">Edit</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        {% if user.is_authenticated %}
+            <li><p class="navbar-text">Logged in as <b>{{ user.email }}</b></p></li>
+            <li><a href="#">Logout</a></li>
+        {% else %}
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Register</a></li>
+        {% endif %}
+    </ul>
+</nav>
+
+<div class="content">
+    {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>
