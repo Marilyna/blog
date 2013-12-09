@@ -12,8 +12,9 @@ def index(request):
 
 
 @login_required(redirect_field_name='sign_in')
-def edit_post(request, post_id):
-    pass
+def post_page(request, post_id):
+    post = Post.objects.get(pk=post_id)
+    return render(request, 'post_page.html', {'post': post})
 
 
 def sign_in(request):

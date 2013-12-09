@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>{{ post.title }}</h1>
+    <p class="post-info">
+        Published at: {{ post.pub_date|date:"d.m.Y" }} | Author: {{ post.author }}
+    </p>
+    <p>{{ post.content }}</p>
+    <p class="categories-list">
+        <span>Categories: </span>{{ post.categories.all|join:", " }}
+    </p>
+{% endblock content %}

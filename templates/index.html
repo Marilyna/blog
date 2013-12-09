@@ -2,7 +2,7 @@
 {% block content %}
     {% if all_posts %}
         {% for post in all_posts %}
-            {% include "post.html" with post=post%}
+            {% include "post_card.html" with post=post%}
         {% endfor %}
     {% else %}
         <p>No posts found.</p>
