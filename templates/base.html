@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Catalog {% block title %}{% endblock %}</title>
+    <title>Catalog {% block title %}{% endblock title %}</title>
     <link rel=stylesheet type=text/css href="{{ STATIC_URL }}bootstrap.css">
     <link rel=stylesheet type=text/css href="{{ STATIC_URL }}style.css">
 </head>
@@ -9,22 +9,23 @@
 
 <nav class="navbar navbar-default" role="navigation">
     <a class="navbar-brand" href="{% url 'index' %}">Blog</a>
-    <ul class="nav navbar-nav">
-        <li><a href="#">Edit</a></li>
-    </ul>
+    {% if user.is_authenticated %}
+        <ul class="nav navbar-nav">
+            <li><a href="#">New post</a></li>
+        </ul>
+    {% endif %}
     <ul class="nav navbar-nav navbar-right">
         {% if user.is_authenticated %}
-            <li><p class="navbar-text">Logged in as <b>{{ user.email }}</b></p></li>
-            <li><a href="#">Logout</a></li>
+            <li><p class="navbar-text">Signed in as <b>{{ user.username }}</b></p></li>
+            <li><a href="{% url 'sign_out' %}">Sign out</a></li>
         {% else %}
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Register</a></li>
+            <li><a href="{% url 'sign_in' %}">Sign in</a></li>
         {% endif %}
     </ul>
 </nav>
 
 <div class="content">
-    {% block content %}{% endblock %}
+    {% block content %}{% endblock content %}
 </div>
 
 </body>

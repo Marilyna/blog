@@ -1,0 +1,10 @@
+<div class="form-group {% if field.errors %}error{% endif %}">
+    <dl>
+        <dt class="col-md-1">{{ field.label }}</dt>
+        <dd class="col-md-4">{{ field }}
+            {% if field.errors %}
+                {{ field.errors|join:" " }}
+            {% endif %}
+        </dd>
+    </dl>
+</div>
