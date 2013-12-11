@@ -16,3 +16,8 @@ class Category(models.Model):
 
     def __unicode__(self):
         return self.title
+
+
+# class Image(models.Model):
+#     image = models.ImageField()
+#     post = models.ForeignKey(Post)

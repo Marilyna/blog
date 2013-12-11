@@ -11,7 +11,7 @@
     <a class="navbar-brand" href="{% url 'index' %}">Blog</a>
     {% if user.is_authenticated %}
         <ul class="nav navbar-nav">
-            <li><a href="#">New post</a></li>
+            <li><a href="{% url 'new' %}">New post</a></li>
         </ul>
     {% endif %}
     <ul class="nav navbar-nav navbar-right">

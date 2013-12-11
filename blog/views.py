@@ -11,10 +11,14 @@ def index(request):
     return render(request, 'index.html', {'all_posts': all_posts})
 
 
-@login_required(redirect_field_name='sign_in')
+@login_required(login_url='sign_in')
 def post_page(request, post_id):
     post = Post.objects.get(pk=post_id)
     return render(request, 'post_page.html', {'post': post})
+
+@login_required(login_url='sign_in')
+def new_post(request):
+    pass
 
 
 def sign_in(request):
@@ -22,14 +26,14 @@ def sign_in(request):
         form = LoginForm(request.POST)
         if form.is_valid():
             login(request, form.user)
-            return redirect(index)
+            return redirect(request.POST['next'])
     else:
+        nexturl = request.GET['next'] or 'search'
         form = LoginForm()
-    return render(request, 'login.html',
-                  {'form': form})
+    return render(request, 'login.html', {'form': form, 'next': nexturl})
 
 
-@login_required(redirect_field_name='sign_in')
+@login_required(login_url='sign_in')
 def sign_out(request):
     logout(request)
     return redirect(index)

@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', views.index, name='index'),
     url(r'^(?P<post_id>\d+)/$', views.post_page, name='post_page'),
+    url(r'^new/$', views.new_post, name='new'),
 
     url(r'^sign-in/$', views.sign_in, name='sign_in'),
     url(r'^sign-out/$', views.sign_out, name='sign_out')

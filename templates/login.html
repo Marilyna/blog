@@ -14,6 +14,7 @@
             {% for field in form %}
                 {% include "form_field.html" with field=field %}
             {% endfor %}
+            <input type="hidden" name="next" value="{{ next }}">
             <button type="submit" class="btn btn-primary col-md-offset-1 col-md-1">Sign in</button>
         </form>
     </div>

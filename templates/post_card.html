@@ -2,7 +2,10 @@
 <p class="post-info">
     Published at: {{ post.pub_date|date:"d.m.Y" }} | Author: {{ post.author }}
 </p>
-<p>{{ post.content|truncatewords:20 }}</p>
+<p>
+    {{ post.content|truncatewords:20 }}
+    <a href="{% url 'post_page' post.id %}"> more...</a>
+</p>
 <p class="categories-list">
     <span>Categories: </span>{{ post.categories.all|join:", " }}
 </p>
