@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+# from multifilefield.models import MultiFileField
+
 
 class Post(models.Model):
     title = models.CharField(max_length=200)
@@ -18,6 +20,6 @@ class Category(models.Model):
         return self.title
 
 
-# class Image(models.Model):
-#     image = models.ImageField()
-#     post = models.ForeignKey(Post)
+class Image(models.Model):
+    image = models.ImageField(upload_to='images')
+    post = models.ForeignKey(Post)

@@ -1,5 +1,9 @@
+from datetime import datetime
+
 from django import forms
 from django.contrib.auth import authenticate
+
+from multifilefield.forms import MultiFileField
 
 
 class LoginForm(forms.Form):
@@ -15,3 +19,9 @@ class LoginForm(forms.Form):
             raise forms.ValidationError("Your account is disabled")
         self.user = user
         return self.cleaned_data
+
+
+class CreatePostForm(forms.Form):
+    title = forms.CharField(max_length=200, required=False)
+    content = forms.CharField(widget=forms.Textarea(attrs={'rows': 10}))
+    image = MultiFileField(required=False)

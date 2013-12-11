@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import login, logout
 
 from blog.models import Post
-from blog.forms import LoginForm
+from blog.forms import LoginForm, CreatePostForm
 
 
 def index(request):
@@ -16,9 +16,17 @@ def post_page(request, post_id):
     post = Post.objects.get(pk=post_id)
     return render(request, 'post_page.html', {'post': post})
 
+
 @login_required(login_url='sign_in')
 def new_post(request):
-    pass
+    if request.method == 'POST':
+        form = CreatePostForm(request.POST)
+        if form.is_valid():
+            # TODO create and save Post and Images
+            return redirect(index)
+    else:
+        form = CreatePostForm()
+        return render(request, 'create_post.html', {'form': form})
 
 
 def sign_in(request):
