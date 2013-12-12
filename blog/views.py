@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout
 
-from blog.models import Post, Image
+from blog.models import Post, Image, Category
 from blog.forms import LoginForm, CreatePostForm
 
 
@@ -11,7 +11,6 @@ def index(request):
     return render(request, 'index.html', {'all_posts': all_posts})
 
 
-@login_required(login_url='sign_in')
 def post_page(request, post_id):
     post = Post.objects.get(pk=post_id)
     images = Image.objects.filter(post=post)
@@ -35,6 +34,11 @@ def new_post(request):
     else:
         form = CreatePostForm()
     return render(request, 'create_post.html', {'form': form})
+
+
+def category_page(request, category_id):
+    category = Category.objects.get(pk=category_id)
+    return render(request, 'index.html', {'all_posts': category.posts.all})
 
 
 def sign_in(request):

@@ -9,6 +9,10 @@ class Post(models.Model):
     author = models.ForeignKey(User)
     categories = models.ManyToManyField('Category', related_name='posts')
 
+    @property
+    def photos_count(self):
+        return Image.objects.filter(post=self).count()
+
 
 class Category(models.Model):
     title = models.CharField(max_length=200)
