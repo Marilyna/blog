@@ -8,13 +8,24 @@ from blog.forms import LoginForm, CreatePostForm
 
 def index(request):
     all_posts = Post.objects.all().order_by('-published')
-    return render(request, 'index.html', {'all_posts': all_posts})
+    context = {'posts': all_posts}
+    context.update(_get_sidebar_context())
+    return render(request, 'index.html', context)
+
+
+def category_page(request, category_id):
+    category = Category.objects.get(pk=category_id)
+    context = {'posts': category.posts.order_by('-published')}
+    context.update(_get_sidebar_context())
+    return render(request, 'index.html', context)
 
 
 def post_page(request, post_id):
     post = Post.objects.get(pk=post_id)
     images = Image.objects.filter(post=post)
-    return render(request, 'post_page.html', {'post': post, 'images': images})
+    context = {'post': post, 'images': images}
+    context.update(_get_sidebar_context())
+    return render(request, 'post_page.html', context)
 
 
 @login_required(login_url='sign_in')
@@ -33,12 +44,9 @@ def new_post(request):
             form.files = {}
     else:
         form = CreatePostForm()
-    return render(request, 'create_post.html', {'form': form})
 
-
-def category_page(request, category_id):
-    category = Category.objects.get(pk=category_id)
-    return render(request, 'index.html', {'all_posts': category.posts.all})
+    context = {'form': form}
+    return render(request, 'create_post.html', context)
 
 
 def sign_in(request):
@@ -50,10 +58,17 @@ def sign_in(request):
             return redirect(request.POST.get('next'))
     else:
         form = LoginForm()
-    return render(request, 'login.html', {'form': form, 'next': nexturl})
+
+    context = {'form': form, 'next': nexturl}
+    return render(request, 'login.html', context)
 
 
 @login_required(login_url='sign_in')
 def sign_out(request):
     logout(request)
     return redirect(index)
+
+
+def _get_sidebar_context():
+    all_categories = Category.objects.values('id', 'title')
+    return {'categories': all_categories}

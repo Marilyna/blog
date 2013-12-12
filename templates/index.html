@@ -1,6 +1,11 @@
 {% extends "base.html" %}
+
+{% block sidebar %}
+    {% include "sidebar.html" %}
+{% endblock sidebar %}
+
 {% block content %}
-    {% for post in all_posts %}
+    {% for post in posts %}
         {% include "post_card.html" with post=post%}
     {% empty %}
         <p>No posts found.</p>
