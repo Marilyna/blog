@@ -14,7 +14,8 @@ def index(request):
 @login_required(login_url='sign_in')
 def post_page(request, post_id):
     post = Post.objects.get(pk=post_id)
-    return render(request, 'post_page.html', {'post': post})
+    images = Image.objects.filter(post=post)
+    return render(request, 'post_page.html', {'post': post, 'images': images})
 
 
 @login_required(login_url='sign_in')

@@ -43,7 +43,9 @@ p.categories-list {
     font-size: 12px;
 }
 
-
+img.post-image {
+    max-width: 300px;
+}
 
 
 

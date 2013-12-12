@@ -5,6 +5,13 @@
         Published at: {{ post.pub_date|date:"d.m.Y" }} | Author: {{ post.author }}
     </p>
     <p>{{ post.content }}</p>
+    <p>
+        {% for im in images %}
+            <a href="{{ MEDIA_URL }}{{ im.image }}">
+                <img src="{{ MEDIA_URL }}{{ im.image }}" class="post-image">
+            </a>
+        {% endfor %}
+    </p>
     <p class="categories-list">
         <span>Categories: </span>{{ post.categories.all|join:", " }}
     </p>
