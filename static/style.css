@@ -1,5 +1,11 @@
-div.content {
-    margin: 20px;
+div.sidebar {
+    background-color: #f7f5fa;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+div.sidebar a {
+    color: #000000;
 }
 
 div.content h1 {

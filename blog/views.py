@@ -15,7 +15,7 @@ def index(request):
 
 def category_page(request, category_id):
     category = Category.objects.get(pk=category_id)
-    context = {'posts': category.posts.order_by('-published')}
+    context = {'posts': category.posts.order_by('-published'), 'active_category': category.id}
     context.update(_get_sidebar_context())
     return render(request, 'index.html', context)
 

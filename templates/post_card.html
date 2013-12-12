@@ -2,7 +2,7 @@
     <h1>{{ post.title|default:"(empty)" }}</h1>
 </a>
 <p class="post-info">
-    Published at: {{ post.published|date:"d.m.Y" }} | Author: {{ post.author }}
+    Published at: {{ post.published|date:"d.m.Y H:i:s" }} | Author: {{ post.author }}
 </p>
 <p>
     {{ post.content|truncatewords:20 }}

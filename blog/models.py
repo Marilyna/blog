@@ -13,6 +13,9 @@ class Post(models.Model):
     def photos_count(self):
         return Image.objects.filter(post=self).count()
 
+    def __unicode__(self):
+        return ', '.join([str(self.id), self.title])
+
 
 class Category(models.Model):
     title = models.CharField(max_length=200)

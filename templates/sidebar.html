@@ -1,7 +1,13 @@
-<ul class="list-unstyled">
-    {% for category in categories %}
-        <li>
-            <a href="{% url 'category_page' category.id %}">{{ category.title }}</a>
-        </li>
-    {% endfor %}
+<h3>Categories</h3>
+<ul class="nav nav-pills nav-stacked">
+    <li>
+        <a href="{% url 'index' %}">All</a>
+    </li>
+    <ul class="nav nav-pills nav-stacked col-sm-offset-1">
+        {% for category in categories %}
+            <li {% if active_category == category.id %}class="active"{% endif %}>
+                <a href="{% url 'category_page' category.id %}">{{ category.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
 </ul>
