@@ -3,5 +3,6 @@
     <form class="form-horizontal" role="form" method="POST" action="{% url 'new' %}" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
+        <button type="submit" class="btn btn-primary col-md-offset-1 col-md-1">Publish</button>
     </form>
 {% endblock content %}

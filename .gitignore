@@ -1,5 +1,6 @@
 *.py[cod]
 env/
+uploads/
 *.sqlite3
 
 # C extensions

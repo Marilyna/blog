@@ -1,4 +1,5 @@
 from datetime import datetime
+from blog.models import Post
 
 from django import forms
 from django.contrib.auth import authenticate
@@ -22,6 +23,13 @@ class LoginForm(forms.Form):
 
 
 class CreatePostForm(forms.Form):
+    # class Meta:
+    #     model = Post
+    #     fields = ('title', 'content', 'images')
+    #     widgets = {
+    #         'content': forms.Textarea(attrs={'rows': 10})
+    #     }
     title = forms.CharField(max_length=200, required=False)
     content = forms.CharField(widget=forms.Textarea(attrs={'rows': 10}))
-    image = MultiFileField(required=False)
+    files = MultiFileField(required=False)
+    simple = forms.ImageField(required=False)

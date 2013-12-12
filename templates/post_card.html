@@ -1,6 +1,6 @@
 <a href="{% url 'post_page' post.id %}"><h1>{{ post.title }}</h1></a>
 <p class="post-info">
-    Published at: {{ post.pub_date|date:"d.m.Y" }} | Author: {{ post.author }}
+    Published at: {{ post.published|date:"d.m.Y" }} | Author: {{ post.author }}
 </p>
 <p>
     {{ post.content|truncatewords:20 }}
