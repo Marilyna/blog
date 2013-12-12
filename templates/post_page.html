@@ -1,6 +1,6 @@
 {% extends "index.html" %}
 {% block content %}
-    <h1>{{ post.title }}</h1>
+    <h1>{{ post.title|default:"(empty)" }}</h1>
     <p class="post-info">
         Published at: {{ post.pub_date|date:"d.m.Y" }} | Author: {{ post.author }}
     </p>

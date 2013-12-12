@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout
 
-from blog.models import Post, Image, Category
+from blog.models import Post, Category
 from blog.forms import LoginForm, CreatePostForm
 
 
@@ -22,8 +22,7 @@ def category_page(request, category_id):
 
 def post_page(request, post_id):
     post = Post.objects.get(pk=post_id)
-    images = Image.objects.filter(post=post)
-    context = {'post': post, 'images': images}
+    context = {'post': post, 'images': post.images.all()}
     context.update(_get_sidebar_context())
     return render(request, 'post_page.html', context)
 
@@ -33,12 +32,7 @@ def new_post(request):
     if request.method == 'POST':
         form = CreatePostForm(request.POST, request.FILES)
         if form.is_valid():
-            post = Post(title=form['title'].data.strip(), content=form['content'].data, author=request.user)
-            post.save()
-            if form.files:
-                for f in form.files.getlist('files[]'):
-                    im = Image(post=post)
-                    im.image.save(f.name, f)
+            form.save(request.user)
             return redirect(index)
         else:
             form.files = {}

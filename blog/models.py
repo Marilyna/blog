@@ -11,7 +11,7 @@ class Post(models.Model):
 
     @property
     def photos_count(self):
-        return Image.objects.filter(post=self).count()
+        return self.images.count()
 
     def __unicode__(self):
         return ', '.join([str(self.id), self.title])
@@ -27,4 +27,4 @@ class Category(models.Model):
 
 class Image(models.Model):
     image = models.ImageField(upload_to='images/%Y/%m/%d')
-    post = models.ForeignKey(Post)
+    post = models.ForeignKey(Post, related_name='images')

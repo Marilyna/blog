@@ -13,6 +13,7 @@ class CategoryAdmin(admin.ModelAdmin):
 class ImageAdmin(admin.ModelAdmin):
     list_display = ('image', 'post')
 
+
 admin.site.register(Post, PostAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Image, ImageAdmin)

@@ -8,11 +8,11 @@
     {{ post.content|truncatewords:20 }}
     <a href="{% url 'post_page' post.id %}"> ({{ post.photos_count }} photos) </a>
 </p>
-{% if post.categories %}
-<p class="categories-list">
-    Categories:
-    {% for category in post.categories.all %}
-        <a href="{% url 'category_page' category.id %}">{{ category }}</a>{% if not forloop.last %}, {% endif %}
-    {% endfor %}
-</p>
+{% if post.categories.all %}
+    <p class="categories-list">
+        Categories:
+        {% for category in post.categories.all %}
+            <a href="{% url 'category_page' category.id %}">{{ category }}</a>{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </p>
 {% endif %}

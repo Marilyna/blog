@@ -33,14 +33,15 @@ a.post-image img {
     max-width: 300px;
 }
 
-div.authentication form dt, div.content form dd {
+div.authentication form dt {
     display: inline;
-}
-
-div.authentication form dt  {
     text-align: right;
 }
 
-div.authentication form dd input {
+div.authentication form dd {
+    max-width: 300px;
+}
+
+form dd input, textarea{
     width: 100%;
 }

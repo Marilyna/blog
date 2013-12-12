@@ -3,6 +3,8 @@ from django.contrib.auth import authenticate
 
 from multifilefield.forms import MultiFileField
 
+from blog.models import Post, Image
+
 
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=100)
@@ -34,3 +36,14 @@ class CreatePostForm(forms.Form):
                 if not file.content_type.startswith('image/'):
                     raise forms.ValidationError("Only image files can be uploaded")
         return self.cleaned_data
+
+    def save(self, author):
+        post = Post(title=self.cleaned_data['title'].strip(),
+                    content=self.cleaned_data['content'],
+                    author=author)
+        post.save()
+        if self.files:
+            for f in self.files.getlist('files[]'):
+                im = Image(post=post)
+                im.image.save(f.name, f)
+        return post
