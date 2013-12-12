@@ -1,6 +1,3 @@
-from datetime import datetime
-from blog.models import Post
-
 from django import forms
 from django.contrib.auth import authenticate
 
@@ -23,13 +20,17 @@ class LoginForm(forms.Form):
 
 
 class CreatePostForm(forms.Form):
-    # class Meta:
-    #     model = Post
-    #     fields = ('title', 'content', 'images')
-    #     widgets = {
-    #         'content': forms.Textarea(attrs={'rows': 10})
-    #     }
     title = forms.CharField(max_length=200, required=False)
     content = forms.CharField(widget=forms.Textarea(attrs={'rows': 10}))
     files = MultiFileField(required=False)
-    simple = forms.ImageField(required=False)
+
+    def clean(self):
+        """
+        Check if all files are images
+
+        """
+        if self.files:
+            for file in self.files.getlist('files[]'):
+                if not file.content_type.startswith('image/'):
+                    raise forms.ValidationError("Only image files can be uploaded")
+        return self.cleaned_data

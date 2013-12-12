@@ -2,7 +2,15 @@
 {% block content %}
     <form class="form-horizontal" role="form" method="POST" action="{% url 'new' %}" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
+
+        {% if form.non_field_errors %}
+                <div class="alert alert-danger">
+                    {{ form.non_field_errors.0 }}
+                </div>
+            {% endif %}
+        {% for field in form %}
+            {% include "form_field.html" with field=field %}
+        {% endfor %}
         <button type="submit" class="btn btn-primary col-md-offset-1 col-md-1">Publish</button>
     </form>
 {% endblock content %}

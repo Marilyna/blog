@@ -1,4 +1,6 @@
-<a href="{% url 'post_page' post.id %}"><h1>{{ post.title }}</h1></a>
+<a href="{% url 'post_page' post.id %}">
+    <h1>{{ post.title|default:"(empty)" }}</h1>
+</a>
 <p class="post-info">
     Published at: {{ post.published|date:"d.m.Y" }} | Author: {{ post.author }}
 </p>

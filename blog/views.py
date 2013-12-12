@@ -22,16 +22,18 @@ def new_post(request):
     if request.method == 'POST':
         form = CreatePostForm(request.POST, request.FILES)
         if form.is_valid():
-            post = Post(title=form['title'].data, content=form['content'].data, author=request.user)
+            post = Post(title=form['title'].data.strip(), content=form['content'].data, author=request.user)
             post.save()
-            import pdb; pdb.set_trace()
-            image = Image(post=post)
-            image.image.save(form.files['simple'].name, form.files['simple'])
-
+            if form.files:
+                for f in form.files.getlist('files[]'):
+                    im = Image(post=post)
+                    im.image.save(f.name, f)
             return redirect(index)
+        else:
+            form.files = {}
     else:
         form = CreatePostForm()
-        return render(request, 'create_post.html', {'form': form})
+    return render(request, 'create_post.html', {'form': form})
 
 
 def sign_in(request):
