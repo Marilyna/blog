@@ -1,0 +1,4 @@
+Django==1.6
+Pillow==2.2.1
+django-multifilefield==1.0
+wsgiref==0.1.2
