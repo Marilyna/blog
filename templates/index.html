@@ -7,9 +7,11 @@
 {% endblock sidebar %}
 
 {% block content %}
-    {% for post in posts %}
-        {% include "post_card.html" with post=post%}
-    {% empty %}
-        <p>No posts found.</p>
-    {% endfor %}
+    <div class="col-md-10">
+        {% for post in posts %}
+            {% include "post_card.html" with post=post%}
+        {% empty %}
+            <p>No posts found.</p>
+        {% endfor %}
+    </div>
 {% endblock content %}

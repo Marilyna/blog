@@ -1,23 +1,26 @@
 {% extends "index.html" %}
+
 {% block content %}
-    <h1>{{ post.title|default:"(empty)" }}</h1>
-    <p class="post-info">
-        Published at: {{ post.pub_date|date:"d.m.Y" }} | Author: {{ post.author }}
-    </p>
-    <p>{{ post.content|linebreaksbr }}</p>
-    <p>
-        {% for im in images %}
-            <a class="post-image" href="{{ MEDIA_URL }}{{ im.image }}">
-                <img src="{{ MEDIA_URL }}{{ im.image }}">
-            </a>
-        {% endfor %}
-    </p>
-    {% if post.categories.all %}
-        <p class="categories-list">
-            Categories:
-            {% for category in post.categories.all %}
-                <a href="{% url 'category_page' category.id %}">{{ category }}</a>{% if not forloop.last %}, {% endif %}
+    <div class="col-md-10">
+        <h1>{{ post.title|default:"(empty)" }}</h1>
+        <p class="post-info">
+            Published at: {{ post.published|date:"d.m.Y H:i:s" }} | Author: {{ post.author }}
+        </p>
+        <p>{{ post.content|linebreaksbr }}</p>
+        <p>
+            {% for im in images %}
+                <a class="post-image" href="{{ MEDIA_URL }}{{ im.image }}">
+                    <img src="{{ MEDIA_URL }}{{ im.image }}">
+                </a>
             {% endfor %}
         </p>
-    {% endif %}
+        {% if post.categories.all %}
+            <p class="categories-list">
+                Categories:
+                {% for category in post.categories.all %}
+                    <a href="{% url 'category_page' category.id %}">{{ category }}</a>{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+        {% endif %}
+    </div>
 {% endblock content %}

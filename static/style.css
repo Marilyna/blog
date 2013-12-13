@@ -1,3 +1,12 @@
+div.content {
+    margin: 0 15px;
+}
+
+div.content h1 {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
 div.sidebar {
     background-color: #f7f5fa;
     border-radius: 10px;
@@ -7,11 +16,6 @@ div.sidebar {
 
 div.sidebar a {
     color: #000000;
-}
-
-div.content h1 {
-    font-size: 24px;
-    margin-bottom: 5px;
 }
 
 p.post-info {
@@ -34,15 +38,15 @@ a.post-image img {
     max-width: 300px;
 }
 
-div.authentication form dt {
-    display: inline;
+form dt {
     text-align: right;
-}
-
-div.authentication form dd {
-    max-width: 300px;
+    float: left;
 }
 
 form dd input, textarea{
     width: 100%;
+}
+
+div.authentication form dd {
+    max-width: 300px;
 }
